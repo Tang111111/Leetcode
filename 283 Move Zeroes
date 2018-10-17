@@ -1,0 +1,28 @@
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+        int count=0;
+        int i=0;
+        while(i<nums.size()-count)
+        {
+            if(nums[i]==0)
+            {
+                shiftVector(nums,i);
+                count++;
+                i=0;
+            }
+            else
+                i++;
+                
+        }
+        
+    }
+    void shiftVector(vector<int>& nums,int position)
+    {
+        for(int i=position;i<nums.size()-1;i++)
+        {
+            nums[i]=nums[i+1];
+        }
+        nums[nums.size()-1]=0;
+    }
+};
