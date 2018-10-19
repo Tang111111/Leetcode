@@ -1,0 +1,68 @@
+//解法一
+//将nums[i]移动到nums[nums[i]-1] 上 使每个数组中的元素都移动到正确的位置 然后再查找数组中位置的值和本身的值不一样的即为缺失元素
+class Solution {
+public:
+    vector<int> findDisappearedNumbers(vector<int>& nums) {
+        vector<int> res;
+        int n=nums.size();
+        for(int i=0;i<nums.size();i++)
+        {
+            if(nums[i]!=nums[nums[i]-1])
+            {
+                //cout<<i<<"  "<<nums[i]<<endl;
+                swap(nums[i],nums[nums[i]-1]);
+                i--;
+            }
+        }
+        for(int i=0;i<nums.size();i++)
+        {
+            if(nums[i]!=i+1)
+            {
+                cout<<i+1<<endl;
+                res.push_back(i+1);
+            }
+        }
+        return res;
+    }
+};
+
+//解法二
+//把nums[i]-1当作一个地址 然后将数组中的所有元素都遍历一遍 查看哪个没有被指到（即没有变为复数）则push_back(position+1)
+class Solution {
+public:
+    vector<int> findDisappearedNumbers(vector<int>& nums) {
+       for(int i=0;i<nums.size();i++)
+       {
+           int n=abs(nums[i])-1;
+           if(nums[n]>0)
+               nums[n]=-nums[n];
+       }
+        vector<int> res;
+        for(int i=0;i<nums.size();i++)
+        {
+            if(nums[i]>0)
+                res.push_back(i+1);
+        }
+        return res;
+                
+    }
+};
+//解法三
+//第三种解法和第二种类似 即把所有可以被指到的树都加上数组的长度 但为了防止数组溢出 计算位置的时候要用%求余 最后遍历数组查看哪一个元素小于数组长度 即
+//push_back(position+1)
+class Solution {
+public:
+    vector<int> findDisappearedNumbers(vector<int>& nums) {
+        vector<int> res;
+        int n = nums.size();
+        for (int i = 0; i < n; ++i) {
+            nums[(nums[i] - 1) % n] += n;            
+        }
+        for (int i = 0; i < n; ++i) {
+            if (nums[i] <= n) {
+                res.push_back(i + 1);
+            }
+        }
+        return res;
+    }
+};
