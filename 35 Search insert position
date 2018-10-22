@@ -1,0 +1,50 @@
+//解法一
+class Solution {
+public:
+    int searchInsert(vector<int>& nums, int target) {
+        for(int i=0;i<nums.size();i++)
+        {
+            if(nums[0]>target)
+                return 0;
+            if(nums[i]==target)
+                return i;
+            if(nums[i]<target&&nums[i+1]>target)
+                return i+1;
+            if(nums[nums.size()-1]<target)
+                return nums.size();
+        } 
+    }
+};
+
+//解法二
+class Solution {
+public:
+    int searchInsert(vector<int>& nums, int target) {
+        for (int i = 0; i < nums.size(); ++i) {
+            if (nums[i] >= target) return i;
+        }
+        return nums.size();
+    }
+};
+
+//解法三  二分法求解
+class Solution {
+public:
+    int searchInsert(vector<int>& nums, int target) {
+       int len=nums.size();
+        int left=0;
+        int right=len-1;
+        while(left<=right)
+        {
+            int med=left+(right-left)/2;
+            if(nums[med]==target)
+                return med;
+            else if(nums[med]>target)
+                right=med-1;
+            else{
+                left=med+1;
+            }
+        }
+        return left;
+    }
+};
