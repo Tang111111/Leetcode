@@ -29,3 +29,19 @@ public:
         
     }
 };
+//解法二 利用set的自动排序且去除重复的方法
+//始终保持只有三个数
+/最后如果大小小于三则返回最大的那个（尾部）否则返回头部那个（第三小）
+class Solution {
+public:
+    int thirdMax(vector<int>& nums) {
+        set<int> s;
+        for (int num : nums) {
+            s.insert(num);
+            if (s.size() > 3) {
+                s.erase(s.begin());
+            }
+        }
+        return s.size() == 3 ? *s.begin() : *s.rbegin();
+    }
+};
