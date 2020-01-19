@@ -1,0 +1,7 @@
+这道题一看就是用DP啊啊啊啊
+但是动态转移转移方程没有想好，感觉是要用double for loop，但是后来看了答案，发现double for loop也要有讲究
+反正感觉就是一个套路，如果求一个list的sublist有没有可能达到一个target，那么就用dp[target+1]。
+然后double for loop
+for i in len(nums):
+   for j in [target,nums[i]]:
+      dp[j] =dp[j] or dp[j-nums[i]]
