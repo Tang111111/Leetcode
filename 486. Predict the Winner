@@ -1,0 +1,4 @@
+这道题以前在算法课final上见到过，但是那里player2是要greedy algorithm的，即每次只取两边(i,j)中最大的一个
+这题一看就是dp，但是卡住的地方是不知道怎么设计double for loop。
+看了网上的答案后https://blog.csdn.net/xu_xyy/article/details/71243250，发现可以设置一个length，从3开始到n,表示subarray的长度
+然后在第二层for loop里将i从0到len+i<=n开始遍历，随即可以算出对应的j
