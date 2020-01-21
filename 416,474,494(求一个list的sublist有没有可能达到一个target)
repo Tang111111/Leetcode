@@ -5,3 +5,9 @@
 for i in len(nums):
    for j in [target,nums[i]]:
       dp[j] =dp[j] or dp[j-nums[i]]
+
+
+*01/21/2020 edit*
+494题也是一样的套路 但是一个问题就是他允许可加可减。但是等式之间有数学关系的啊啊啊
+详见 https://blog.csdn.net/mine_song/article/details/70216562
+于是将494这道题也转换成了求一个sublist的target的问题了
